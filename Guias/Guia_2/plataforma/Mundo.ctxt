@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=Mundo
+comment0.text=\r\n\ Mundo\ \u2014\ escenario\ del\ juego\ (800\ x\ 500,\ como\ en\ la\ seccion\ 6\ de\ la\r\n\ guia).\ El\ fondo\ es\ images/Background.png,\ configurado\ desde\ Greenfoot.\r\n\r\n\ Responsabilidad\:\ armar\ el\ nivel.\ Toda\ la\ fisica\ vive\ en\ Jugador;\ aqui\r\n\ solo\ se\ decide\ donde\ va\ cada\ cosa.\r\n\r\n\ Diseno\ del\ nivel\:\ el\ suelo\ es\ una\ Plataforma\ mas\ (ancha\ y\ al\ fondo),\ no\r\n\ un\ caso\ especial.\ Asi\ el\ jugador\ aterriza\ siempre\ con\ el\ mismo\ codigo,\r\n\ este\ cayendo\ sobre\ el\ piso\ o\ sobre\ una\ plataforma\ flotante.\r\n\r\n\ Alturas\:\ con\ IMPULSO_SALTO\ \=\ -14\ y\ GRAVEDAD\ \=\ 0.8,\ el\ salto\ sube\ unos\r\n\ 115\ px\ y\ avanza\ unos\ 175\ px\ en\ horizontal.\ Cada\ escalon\ de\ este\ nivel\r\n\ sube\ 65-90\ px\ y\ deja\ huecos\ de\ 60-65\ px,\ o\ sea\ que\ todo\ es\ alcanzable\r\n\ con\ margen,\ y\ los\ huecos\ son\ lo\ bastante\ anchos\ como\ para\ caerse\ por\r\n\ ellos.\r\n
+comment1.params=
+comment1.target=Mundo()
+comment2.params=
+comment2.target=void\ prepararMundo()
+comment3.params=
+comment3.target=void\ crearSuelo()
+comment4.params=
+comment4.target=void\ crearPlataformas()
+comment4.text=Escalera\ de\ plataformas\ con\ huecos\ por\ donde\ se\ puede\ caer.
+comment5.params=
+comment5.target=void\ crearJugador()
+numComments=6
