@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=Plataforma
+comment0.text=\r\n\ Plataforma\ \u2014\ superficie\ solida\ sobre\ la\ que\ el\ Jugador\ se\ apoya.\r\n\r\n\ La\ plataforma\ no\ tiene\ comportamiento\ propio\ (no\ tiene\ act())\:\ solo\r\n\ existe\ y\ ocupa\ un\ rectangulo.\ Es\ Jugador\ quien\ pregunta\ "hay\ una\r\n\ plataforma\ bajo\ mis\ pies?"\ en\ cada\ act().\ Mantener\ la\ logica\ en\ un\ solo\r\n\ lado\ evita\ que\ dos\ clases\ intenten\ resolver\ la\ misma\ colision.\r\n\r\n\ IMAGEN\ PROVISIONAL\:\ mientras\ no\ exista\ images/plataforma.png,\ el\ sprite\r\n\ se\ dibuja\ por\ codigo.\ Ver\ crearImagenConTile()\ mas\ abajo\:\ cuando\ llegue\r\n\ el\ tile,\ cambiar\ la\ linea\ marcada\ en\ el\ constructor\ y\ listo,\ no\ hay\ que\r\n\ tocar\ nada\ mas\ del\ juego.\r\n
+comment1.params=
+comment1.target=Plataforma()
+comment1.text=Plataforma\ con\ tamano\ por\ defecto\ (120\ x\ 20).
+comment2.params=ancho\ alto
+comment2.target=Plataforma(int,\ int)
+comment2.text=\r\n\ @param\ ancho\ ancho\ de\ la\ plataforma\ en\ pixeles.\r\n\ @param\ alto\ \ alto\ de\ la\ plataforma\ en\ pixeles.\r\n
+comment3.params=
+comment3.target=greenfoot.GreenfootImage\ crearImagenProvisional()
+comment3.text=Bloque\ dibujado\ por\ codigo\:\ relleno,\ borde\ claro\ arriba\ y\ sombra\ abajo.
+comment4.params=
+comment4.target=greenfoot.GreenfootImage\ crearImagenConTile()
+comment4.text=\r\n\ Arma\ la\ plataforma\ repitiendo\ un\ tile\ cuadrado\ hasta\ cubrir\ el\r\n\ ancho\ y\ el\ alto\ pedidos.\ Asi\ una\ misma\ imagen\ chica\ sirve\ para\r\n\ plataformas\ de\ cualquier\ largo.\r\n\r\n\ Todavia\ no\ se\ usa\:\ requiere\ que\ exista\ images/plataforma.png.\r\n
+numComments=5
