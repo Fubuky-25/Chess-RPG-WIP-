@@ -1,17 +1,13 @@
 #BlueJ class context
 comment0.target=Bala
-comment0.text=\r\n\ Bala\ \u2014\ proyectil\ del\ Mega\ Buster.\r\n\r\n\ Responsabilidad\ unica\:\ avanzar\ en\ linea\ recta\ y\ desaparecer\ al\ llegar\r\n\ al\ borde\ del\ escenario.\ No\ sabe\ quien\ la\ disparo\ ni\ contra\ que\ choca;\r\n\ si\ mas\ adelante\ se\ agregan\ enemigos,\ la\ deteccion\ del\ impacto\ se\ agrega\r\n\ aqui\ (o\ en\ el\ enemigo),\ sin\ tocar\ al\ Jugador.\r\n\r\n\ Quien\ controla\ cuantas\ balas\ existen\ es\ Jugador\ (MAXIMO_BALAS)\:\ la\ bala\r\n\ solo\ se\ preocupa\ de\ eliminarse\ cuando\ ya\ no\ sirve,\ para\ que\ ese\ cupo\r\n\ quede\ libre\ otra\ vez.\r\n\r\n\ IMAGEN\ PROVISIONAL\:\ mientras\ no\ exista\ images/bala.png,\ el\ disparo\ se\r\n\ dibuja\ por\ codigo.\ Ver\ la\ linea\ marcada\ en\ el\ constructor.\r\n
 comment1.params=direccion
 comment1.target=Bala(int)
 comment2.params=
 comment2.target=void\ act()
 comment3.params=
 comment3.target=boolean\ llegoAlBorde()
-comment3.text=\r\n\ Greenfoot\ no\ deja\ que\ un\ actor\ salga\ del\ mundo\:\ al\ llegar\ al\ borde\r\n\ queda\ pegado\ ahi.\ Por\ eso\ la\ condicion\ es\ "estoy\ tocando\ el\ borde",\r\n\ no\ "estoy\ fuera\ del\ mundo".\r\n
 comment4.params=
 comment4.target=greenfoot.GreenfootImage\ crearImagenProvisional()
-comment4.text=Disparo\ dibujado\ por\ codigo\:\ nucleo\ claro\ con\ halo\ celeste.
 comment5.params=
 comment5.target=greenfoot.GreenfootImage\ cargarImagenDeArchivo()
-comment5.text=\r\n\ Carga\ bala.png\ y\ la\ escala\ igual\ que\ al\ personaje,\ y\ la\ refleja\ si\r\n\ el\ disparo\ va\ hacia\ la\ izquierda.\r\n\r\n\ Todavia\ no\ se\ usa\:\ requiere\ que\ exista\ images/bala.png.\r\n
 numComments=6
