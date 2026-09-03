@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.target=Jugador
+comment1.params=
+comment1.target=Jugador()
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=void\ mover()
+comment4.params=
+comment4.target=void\ apuntarYDisparar()
+comment4.text=Flechas\:\ apuntan\ y\ disparan.\ Espacio\:\ dispara\ hacia\ donde\ vas\ caminando.
+comment5.params=x\ y
+comment5.target=int\ direccionDe(int,\ int)
+comment6.params=
+comment6.target=void\ animar()
+comment7.params=cantidad
+comment7.target=void\ recibirDanio(int)
+comment8.params=
+comment8.target=void\ morir()
+numComments=9

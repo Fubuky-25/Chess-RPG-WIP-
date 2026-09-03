@@ -1,93 +1,40 @@
 import greenfoot.*;
 
-/**
- * Jugador — personaje controlable (sprites de Mega Man).
- *
- * Flujo por cada act():
- *   Entrada (teclado) -> Estado (enum Estado) -> Fisica (gravedad y salto)
- *   -> Colision con Plataforma -> Representacion visual (sprite mostrado).
- *
- * Cambio importante respecto a la version de la guia (seccion 10):
- * la guia calcula la altura con la ecuacion parabolica y(t) = y0 - v0*t +
- * 0.5*g*t^2, es decir, la caida SOLO existe mientras dura un salto. Aqui
- * la gravedad es continua: cada act() se acumula velocidad vertical
- * (vy += GRAVEDAD) y se aplica siempre, este saltando o no. Eso es lo que
- * permite caminar hasta el borde de una plataforma y caerse, y caer entre
- * plataformas, que era el objetivo pedido.
- *
- * Las dos formas describen la misma parabola; la diferencia es que esta
- * version no necesita saber "cuando empezo el salto" para saber si el
- * personaje debe caer.
- */
 public class Jugador extends Actor
 {
-    /**
-     * Estados posibles del jugador (se mantienen los mismos de la guia).
-     * Un enum evita numeros magicos y hace explicito que estado maneja
-     * cada rama de actualizarAnimacion().
-     */
     private enum Estado
     {
         QUIETO,
         CAMINANDO_DERECHA,
         CAMINANDO_IZQUIERDA,
         SALTANDO,
-        CAYENDO
+        CAYENDO,
+        LLEGANDO,
+        APARECIENDO
     }
 
-    // ------------------------------------------------------------------
-    // Ajustes visuales
-    // ------------------------------------------------------------------
-
-    /** Los sprites originales miden 16-26 px; x3 los deja legibles en 800x500. */
     private static final int ESCALA = 3;
 
-    /**
-     * Todos los sprites se dibujan dentro de un lienzo del MISMO tamano
-     * (el del sprite mas grande, jump.png de 26x30) y apoyados al fondo.
-     * Sin esto, al cambiar de frame la imagen cambia de alto y el
-     * personaje "tiembla" y se hunde en el piso, porque Greenfoot ubica al
-     * actor por su centro.
-     */
-    private static final int ANCHO_IMAGEN = 26 * ESCALA;   // 78
-    private static final int ALTO_IMAGEN = 30 * ESCALA;    // 90
-
-    /**
-     * Caja de colision: mas angosta que la imagen a proposito. La imagen
-     * es ancha por los brazos abiertos del salto; el cuerpo real ocupa
-     * bastante menos y no deberia "chocar" con una plataforma que en
-     * pantalla ni siquiera esta tocando.
-     */
-    private static final int ANCHO_CAJA = 14 * ESCALA;     // 42
-
-    /** Cada cuantos act() avanza un frame de la caminata. */
+    private static final int ANCHO_IMAGEN = 42 * ESCALA;   
+    private static final int ALTO_IMAGEN = 32 * ESCALA;    
+    private static final int ANCHO_CAJA = 14 * ESCALA;     
     private static final int CUADROS_POR_FRAME = 6;
+    private static final int CUADROS_POR_WARP = 8;
+    private static final int CUADROS_POSE_DISPARO = 16;
 
-    // ------------------------------------------------------------------
-    // Ajustes de fisica (probar cambiarlos es parte del ejercicio)
-    // ------------------------------------------------------------------
+    private static final int DISTANCIA_CANON = 15 * ESCALA;
+    private static final int ALTURA_CANON = 2 * ESCALA;
 
     private static final double GRAVEDAD = 0.8;
-    private static final double IMPULSO_SALTO = -14.0;      // negativo = hacia arriba
-    private static final double CAIDA_MAXIMA = 16.0;        // velocidad terminal
+    private static final double IMPULSO_SALTO = -14.0;      
+    private static final double CAIDA_MAXIMA = 16.0;        
     private static final int VELOCIDAD_CAMINATA = 5;
 
-    /** Balas simultaneas permitidas (en Mega Man son 3). */
     private static final int MAXIMO_BALAS = 3;
 
-    // ------------------------------------------------------------------
-    // Estado interno
-    // ------------------------------------------------------------------
+    private Estado estado = Estado.LLEGANDO;
 
-    private Estado estado = Estado.QUIETO;
-
-    /** Velocidad vertical actual en px por act(). Negativa = subiendo. */
     private double vy = 0;
-
-    /**
-     * Posicion vertical exacta del centro del actor. getY() solo guarda
-     * enteros, y redondear en cada act() acumularia error en la fisica.
-     */
     private double yReal;
 
     private boolean enSuelo = false;
@@ -96,13 +43,16 @@ public class Jugador extends Actor
     private boolean pidiendoDerecha = false;
     private boolean pidiendoIzquierda = false;
 
-    /** Recuerda si Z ya estaba presionada, para disparar una vez por pulsacion. */
     private boolean teclaDisparoAntes = false;
 
     private int frameActual = 0;
     private int contadorAnimacion = 0;
 
-    // --- Sprites ya escalados, alineados y espejados ---
+    private int cuadrosDisparando = 0;
+
+    private int frameWarp = 0;
+    private int contadorWarp = 0;
+
     private GreenfootImage quietoDerecha;
     private GreenfootImage quietoIzquierda;
     private GreenfootImage saltoDerecha;
@@ -110,63 +60,109 @@ public class Jugador extends Actor
     private GreenfootImage[] caminarDerecha;
     private GreenfootImage[] caminarIzquierda;
 
+    private GreenfootImage disparoQuietoDerecha;
+    private GreenfootImage disparoQuietoIzquierda;
+    private GreenfootImage disparoSaltoDerecha;
+    private GreenfootImage disparoSaltoIzquierda;
+    private GreenfootImage[] disparoCaminarDerecha;
+    private GreenfootImage[] disparoCaminarIzquierda;
+
+    private GreenfootImage[] warp;
+
     public Jugador()
     {
         cargarImagenes();
     }
 
-    /** Greenfoot llama a esto al agregar el actor al mundo. */
     protected void addedToWorld(World mundo)
     {
         yReal = getY();
     }
 
-    // ------------------------------------------------------------------
-    // Carga de imagenes
-    // ------------------------------------------------------------------
-
     private void cargarImagenes()
     {
-        quietoDerecha = prepararSprite("idle.png");
-        quietoIzquierda = espejo(quietoDerecha);
+        quietoIzquierda = prepararSprite("idle.png");
+        quietoDerecha = espejo(quietoIzquierda);
 
-        // jump.png se usa tanto para subir como para caer, igual que en el
-        // Mega Man original (no existe un sprite de caida distinto).
-        saltoDerecha = prepararSprite("jump.png");
-        saltoIzquierda = espejo(saltoDerecha);
+        saltoIzquierda = prepararSprite("jump.png");
+        saltoDerecha = espejo(saltoIzquierda);
 
-        caminarDerecha = new GreenfootImage[4];
-        caminarDerecha[0] = prepararSprite("walk1.png");
-        caminarDerecha[1] = prepararSprite("walk2.png");
-        caminarDerecha[2] = prepararSprite("walk3.png");
-        caminarDerecha[3] = prepararSprite("walk4.png");
+        caminarIzquierda = new GreenfootImage[4];
+        caminarIzquierda[0] = prepararSprite("walk1.png");
+        caminarIzquierda[1] = prepararSprite("walk2.png");
+        caminarIzquierda[2] = prepararSprite("walk3.png");
+        caminarIzquierda[3] = prepararSprite("walk4.png");
 
-        caminarIzquierda = new GreenfootImage[caminarDerecha.length];
+        caminarDerecha = new GreenfootImage[caminarIzquierda.length];
 
-        for (int i = 0; i < caminarDerecha.length; i++)
+        for (int i = 0; i < caminarIzquierda.length; i++)
         {
-            caminarIzquierda[i] = espejo(caminarDerecha[i]);
+            caminarDerecha[i] = espejo(caminarIzquierda[i]);
         }
 
-        setImage(quietoDerecha);
+        disparoQuietoIzquierda = prepararSprite("shooting_stand.png", 0);
+        disparoQuietoDerecha = espejo(disparoQuietoIzquierda);
+
+        disparoSaltoIzquierda = prepararSprite("9.png", -1);
+        disparoSaltoDerecha = espejo(disparoSaltoIzquierda);
+
+        disparoCaminarIzquierda = new GreenfootImage[4];
+        disparoCaminarIzquierda[0] = prepararSprite("shooting_walk1.png", -2);
+        disparoCaminarIzquierda[1] = prepararSprite("shooting_walk2.png", -5);
+        disparoCaminarIzquierda[2] = prepararSprite("shooting_walk3.png", -5);
+        disparoCaminarIzquierda[3] = prepararSprite("shooting_walk4.png", -5);
+
+        disparoCaminarDerecha = new GreenfootImage[disparoCaminarIzquierda.length];
+
+        for (int i = 0; i < disparoCaminarIzquierda.length; i++)
+        {
+            disparoCaminarDerecha[i] = espejo(disparoCaminarIzquierda[i]);
+        }
+
+        warp = new GreenfootImage[3];
+        warp[0] = prepararSprite("warp1.png");
+        warp[1] = prepararSprite("warp2.png");
+        warp[2] = prepararSprite(unirWarpFinal(), 0);
+
+        setImage(warp[0]);
     }
 
-    /**
-     * Escala el sprite x ESCALA y lo pega, centrado y apoyado al fondo,
-     * dentro de un lienzo de tamano fijo (ANCHO_IMAGEN x ALTO_IMAGEN).
-     * "Apoyado al fondo" = los pies del personaje quedan siempre en la
-     * misma linea, sin importar que frame se muestre.
-     */
+    private GreenfootImage unirWarpFinal()
+    {
+        GreenfootImage arriba = new GreenfootImage("warp3B.png");
+        GreenfootImage abajo = new GreenfootImage("warp3A.png");
+
+        int ancho = Math.max(arriba.getWidth(), abajo.getWidth());
+        int alto = arriba.getHeight() + abajo.getHeight();
+
+        GreenfootImage junta = new GreenfootImage(ancho, alto);
+        junta.drawImage(arriba, (ancho - arriba.getWidth()) / 2, 0);
+        junta.drawImage(abajo, (ancho - abajo.getWidth()) / 2, arriba.getHeight());
+
+        return junta;
+    }
+
     private GreenfootImage prepararSprite(String archivo)
     {
-        GreenfootImage original = new GreenfootImage(archivo);
+        return prepararSprite(new GreenfootImage(archivo), 0);
+    }
 
+    private GreenfootImage prepararSprite(String archivo, int desplazamiento)
+    {
+        return prepararSprite(new GreenfootImage(archivo), desplazamiento);
+    }
+
+    private GreenfootImage prepararSprite(GreenfootImage original, int desplazamiento)
+    {
         int ancho = original.getWidth() * ESCALA;
         int alto = original.getHeight() * ESCALA;
         original.scale(ancho, alto);
 
         GreenfootImage lienzo = new GreenfootImage(ANCHO_IMAGEN, ALTO_IMAGEN);
-        lienzo.drawImage(original, (ANCHO_IMAGEN - ancho) / 2, ALTO_IMAGEN - alto);
+        lienzo.drawImage(
+            original,
+            (ANCHO_IMAGEN - ancho) / 2 + desplazamiento * ESCALA,
+            ALTO_IMAGEN - alto);
 
         return lienzo;
     }
@@ -178,12 +174,30 @@ public class Jugador extends Actor
         return copia;
     }
 
-    // ------------------------------------------------------------------
-    // Ciclo principal
-    // ------------------------------------------------------------------
-
     public void act()
     {
+        if (estado == Estado.LLEGANDO)
+        {
+            aplicarGravedad();
+
+            if (enSuelo)
+            {
+                estado = Estado.APARECIENDO;
+                frameWarp = 0;
+                contadorWarp = 0;
+            }
+
+            actualizarAnimacion();
+            return;
+        }
+
+        if (estado == Estado.APARECIENDO)
+        {
+            avanzarAparicion();
+            actualizarAnimacion();
+            return;
+        }
+
         controlarMovimientoHorizontal();
         controlarSalto();
         aplicarGravedad();
@@ -209,7 +223,6 @@ public class Jugador extends Actor
         }
     }
 
-    /** Mueve en X sin dejar que el personaje se salga del escenario. */
     private void moverEnX(int desplazamiento)
     {
         int nuevaX = getX() + desplazamiento;
@@ -229,33 +242,15 @@ public class Jugador extends Actor
         setLocation(nuevaX, getY());
     }
 
-    /**
-     * El salto solo aplica un impulso inicial hacia arriba. De ahi en
-     * adelante la gravedad se encarga del resto, por eso no hace falta
-     * llevar un contador de "tiempo de salto".
-     */
     private void controlarSalto()
     {
-        if (Greenfoot.isKeyDown("space") && enSuelo)
+        if (Greenfoot.isKeyDown("x") && enSuelo)
         {
             vy = IMPULSO_SALTO;
             enSuelo = false;
         }
     }
 
-    /**
-     * Gravedad continua + aterrizaje.
-     *
-     * Cada act():
-     *   1. la velocidad vertical aumenta (vy += GRAVEDAD);
-     *   2. se calcula donde quedarian los pies despues de moverse;
-     *   3. si el personaje va bajando y en ese recorrido cruza la
-     *      superficie de una Plataforma, se apoya exactamente encima.
-     *
-     * El paso 3 revisa el TRAMO recorrido (no solo la posicion final)
-     * para que a alta velocidad de caida no atraviese una plataforma
-     * delgada.
-     */
     private void aplicarGravedad()
     {
         vy += GRAVEDAD;
@@ -285,18 +280,6 @@ public class Jugador extends Actor
         ubicarPies(piesDespues);
     }
 
-    /**
-     * Busca la plataforma sobre la que el jugador debe quedar apoyado.
-     *
-     * Condiciones:
-     *  - hay superposicion horizontal entre la caja del jugador y la
-     *    plataforma (si no, el personaje esta al lado, no encima);
-     *  - la superficie de la plataforma queda dentro del tramo que los
-     *    pies recorren en este act().
-     *
-     * Si hay varias candidatas (plataformas apiladas), gana la mas alta,
-     * que es la primera que los pies tocarian al caer.
-     */
     private Plataforma buscarSoporte(double piesAntes, double piesDespues)
     {
         Plataforma elegida = null;
@@ -311,8 +294,6 @@ public class Jugador extends Actor
 
             double superficie = superficieDe(plataforma);
 
-            // El "- 1" da un pixel de tolerancia para que, estando ya
-            // apoyado, el jugador siga detectando el suelo cada act().
             boolean cruzaLaSuperficie =
                 superficie >= piesAntes - 1 && superficie <= piesDespues;
 
@@ -344,13 +325,11 @@ public class Jugador extends Actor
             && izquierdaJugador < derechaPlataforma;
     }
 
-    /** Coordenada Y de la cara superior de una plataforma. */
     private double superficieDe(Plataforma plataforma)
     {
         return plataforma.getY() - plataforma.getImage().getHeight() / 2.0;
     }
 
-    /** Coordenada Y de los pies (borde inferior del lienzo del sprite). */
     private double pies()
     {
         return yReal + ALTO_IMAGEN / 2.0;
@@ -362,11 +341,6 @@ public class Jugador extends Actor
         setLocation(getX(), (int) Math.round(yReal));
     }
 
-    /**
-     * Traduce la situacion fisica del personaje a uno de los estados.
-     * En el aire manda el estado aereo; en el suelo, si hay tecla de
-     * direccion presionada, camina; si no, queda quieto.
-     */
     private void actualizarEstado()
     {
         if (!enSuelo)
@@ -387,17 +361,29 @@ public class Jugador extends Actor
         }
     }
 
-    // ------------------------------------------------------------------
-    // Disparo
-    // ------------------------------------------------------------------
+    private void avanzarAparicion()
+    {
+        contadorWarp++;
 
-    /**
-     * Dispara una vez por pulsacion de Z (no mientras se mantiene
-     * apretada) y con un maximo de balas simultaneas en pantalla, igual
-     * que el Mega Buster original.
-     */
+        if (contadorWarp >= CUADROS_POR_WARP)
+        {
+            contadorWarp = 0;
+            frameWarp++;
+
+            if (frameWarp >= warp.length)
+            {
+                estado = Estado.QUIETO;
+            }
+        }
+    }
+
     private void controlarDisparo()
     {
+        if (cuadrosDisparando > 0)
+        {
+            cuadrosDisparando--;
+        }
+
         boolean teclaAhora = Greenfoot.isKeyDown("z");
 
         if (teclaAhora && !teclaDisparoAntes && quedanBalasDisponibles())
@@ -417,22 +403,32 @@ public class Jugador extends Actor
     {
         int direccion = mirandoIzquierda ? -1 : 1;
 
-        // La bala nace al costado del personaje, a la altura del brazo.
-        int x = getX() + direccion * (ANCHO_CAJA / 2 + 4);
-        int y = getY() + 5;
+        int x = getX() + direccion * DISTANCIA_CANON;
+        int y = getY() + ALTURA_CANON;
 
         getWorld().addObject(new Bala(direccion), x, y);
-    }
 
-    // ------------------------------------------------------------------
-    // Animacion
-    // ------------------------------------------------------------------
+        cuadrosDisparando = CUADROS_POSE_DISPARO;
+    }
 
     private void actualizarAnimacion()
     {
-        if (estado == Estado.SALTANDO || estado == Estado.CAYENDO)
+        if (estado == Estado.APARECIENDO)
         {
-            setImage(mirandoIzquierda ? saltoIzquierda : saltoDerecha);
+            setImage(warp[frameWarp]);
+        }
+        else if (estado == Estado.LLEGANDO
+            || estado == Estado.SALTANDO
+            || estado == Estado.CAYENDO)
+        {
+            if (disparando())
+            {
+                setImage(mirandoIzquierda ? disparoSaltoIzquierda : disparoSaltoDerecha);
+            }
+            else
+            {
+                setImage(mirandoIzquierda ? saltoIzquierda : saltoDerecha);
+            }
         }
         else if (estado == Estado.CAMINANDO_DERECHA)
         {
@@ -444,15 +440,24 @@ public class Jugador extends Actor
         }
         else
         {
-            setImage(mirandoIzquierda ? quietoIzquierda : quietoDerecha);
+            if (disparando())
+            {
+                setImage(mirandoIzquierda ? disparoQuietoIzquierda : disparoQuietoDerecha);
+            }
+            else
+            {
+                setImage(mirandoIzquierda ? quietoIzquierda : quietoDerecha);
+            }
+
             reiniciarCaminata();
         }
     }
 
-    /**
-     * Cambia de frame cada CUADROS_POR_FRAME llamadas, no en cada act():
-     * a 50 act() por segundo la caminata seria un borron.
-     */
+    private boolean disparando()
+    {
+        return cuadrosDisparando > 0;
+    }
+
     private void animarCaminata(boolean izquierda)
     {
         contadorAnimacion++;
@@ -463,12 +468,20 @@ public class Jugador extends Actor
             contadorAnimacion = 0;
         }
 
-        setImage(izquierda
-            ? caminarIzquierda[frameActual]
-            : caminarDerecha[frameActual]);
+        GreenfootImage[] cuadros;
+
+        if (disparando())
+        {
+            cuadros = izquierda ? disparoCaminarIzquierda : disparoCaminarDerecha;
+        }
+        else
+        {
+            cuadros = izquierda ? caminarIzquierda : caminarDerecha;
+        }
+
+        setImage(cuadros[frameActual]);
     }
 
-    /** Al detenerse, la proxima caminata empieza desde el primer frame. */
     private void reiniciarCaminata()
     {
         frameActual = 0;
