@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Soldado
+comment1.params=vida\ velocidad
+comment1.target=Soldado(int,\ int)
+comment2.params=cantidad
+comment2.target=void\ recibirDanio(int)
+comment3.params=
+comment3.target=int\ getVida()
+comment4.params=
+comment4.target=int\ getVidaMaxima()
+comment5.params=
+comment5.target=void\ morir()
+numComments=6

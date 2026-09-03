@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=HUD
+comment1.params=mundo\ jugador\ gestor
+comment1.target=HUD(JuegoWorld,\ Jugador,\ GestorOleadas)
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=void\ actualizarImagen()
+numComments=4

@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.target=JuegoWorld
+comment1.params=
+comment1.target=JuegoWorld()
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=void\ gameOver()
+comment4.params=x\ margen
+comment4.target=int\ limitarX(int,\ int)
+comment5.params=y\ margen
+comment5.target=int\ limitarY(int,\ int)
+comment6.params=x\ y
+comment6.target=boolean\ dentroDeLaSala(int,\ int)
+comment7.params=
+comment7.target=greenfoot.GreenfootImage\ construirFondo()
+comment7.text=\r\n\ El\ fondo\ es\ 16\:9\ y\ el\ mundo\ no.\ Se\ escala\ a\ lo\ ancho\ sin\ deformar\ y\ el\ alto\r\n\ que\ falta\ se\ rellena\ repitiendo\ piso,\ dejando\ el\ muro\ inferior\ abajo\ del\ todo.\r\n
+numComments=8
