@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=PieceThemeManager
+comment1.params=
+comment1.target=void\ assignRandomColor()
+comment2.params=piece\ pieceType\ isPlayer
+comment2.target=void\ applyImage(Piece,\ java.lang.String,\ boolean)
+numComments=3

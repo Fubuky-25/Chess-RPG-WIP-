@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=KnightPiece
+comment1.params=isPlayer
+comment1.target=KnightPiece(boolean)
+comment2.params=targetX\ targetY
+comment2.target=boolean\ isValidMove(int,\ int)
+numComments=3

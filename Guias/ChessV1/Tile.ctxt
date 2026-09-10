@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=Tile
+comment1.params=type\ x\ y
+comment1.target=Tile(java.lang.String,\ int,\ int)
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=int\ getBoardX()
+comment4.params=
+comment4.target=int\ getBoardY()
+numComments=5

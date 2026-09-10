@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=TimingBar
+comment1.params=attacker\ defender
+comment1.target=TimingBar(Piece,\ Piece)
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=void\ moveCursor()
+comment4.params=
+comment4.target=void\ drawBar()
+comment5.params=
+comment5.target=void\ checkInput()
+numComments=6
