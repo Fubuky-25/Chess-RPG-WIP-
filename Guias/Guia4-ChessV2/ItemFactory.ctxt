@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=ItemFactory
+comment0.text=Fabrica\ de\ items\:\ centraliza\ el\ catalogo\ y\ el\ sorteo\ de\ recompensas.
+comment1.params=level
+comment1.target=Item\ randomItem(int)
+comment2.params=level
+comment2.target=Weapon\ randomWeapon(int)
+comment3.params=level
+comment3.target=Armor\ randomArmor(int)
+comment4.params=
+comment4.target=Relic\ randomRelic()
+comment5.params=
+comment5.target=Piece\ randomRewardPiece()
+comment5.text=Pieza\ de\ recompensa\ (nunca\ un\ segundo\ Rey).
+numComments=6

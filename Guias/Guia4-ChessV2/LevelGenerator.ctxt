@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=LevelGenerator
+comment0.text=\r\n\ Generacion\ procedural\ de\ cada\ nivel\:\r\n\ \ \ -\ cantidad\ de\ enemigos\:\ 4\ y\ +1\ cada\ 3\ niveles\r\n\ \ \ -\ stats\ escalados\ un\ 10%\ acumulativo\ por\ nivel\r\n\ \ \ -\ posiciones\ aleatorias\ sin\ solapamiento\ dentro\ de\ la\ zona\ enemiga\r\n
+comment1.params=level
+comment1.target=int\ enemyCountForLevel(int)
+comment2.params=level
+comment2.target=double\ statMultiplier(int)
+comment3.params=world\ level
+comment3.target=void\ spawnEnemies(ChessWorld,\ int)
+comment4.params=level\ queenAllowed
+comment4.target=java.lang.String\ pickType(int,\ boolean)
+comment4.text=Ruleta\ ponderada\:\ los\ tipos\ disponibles\ dependen\ del\ nivel.
+comment5.params=type
+comment5.target=Piece\ createPiece(java.lang.String)
+numComments=6

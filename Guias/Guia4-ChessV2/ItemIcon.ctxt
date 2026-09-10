@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=ItemIcon
+comment0.text=\r\n\ Icono\ arrastrable\ del\ panel\ de\ inventario.\r\n\ Se\ suelta\ encima\ de\ una\ pieza\ del\ jugador\ para\ equiparla\ (solo\ en\ DEPLOY).\r\n
+comment1.params=item
+comment1.target=ItemIcon(Item)
+comment2.params=x\ y
+comment2.target=void\ setHome(int,\ int)
+comment3.params=
+comment3.target=void\ act()
+comment4.params=
+comment4.target=Item\ getItem()
+numComments=5

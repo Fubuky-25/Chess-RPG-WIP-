@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=FloatingText
+comment0.text=\r\n\ Texto\ que\ sube\ sobre\ la\ pieza\ golpeada\ y\ se\ desvanece\:\ "-12",\ "CRITICO",\ "FALLO".\r\n\r\n\ Adaptado\ de\ TextoFlotante\ del\ proyecto\ JuegoTurnos.\ Alli\ el\ texto\ subia\ con\r\n\ setLocation(getX(),\ getY()-1),\ pero\ aqui\ el\ mundo\ es\ una\ rejilla\ de\ celdas\:\r\n\ restar\ 1\ a\ la\ Y\ saltaria\ una\ casilla\ entera.\ Por\ eso\ el\ movimiento\ se\ hace\r\n\ DENTRO\ de\ la\ imagen\ del\ actor,\ que\ es\ mas\ alta\ que\ una\ celda.\r\n\r\n\ Explica\ el\ resultado\ cuantitativo\ del\ golpe\ justo\ donde\ ocurre\ y\ desaparece\r\n\ solo\ para\ no\ acumular\ ruido\ en\ pantalla.\r\n
+comment1.params=text\ color\ delay
+comment1.target=FloatingText(java.lang.String,\ greenfoot.Color,\ int)
+comment1.text=\r\n\ @param\ delay\ ciclos\ de\ espera\ antes\ de\ aparecer.\ Sirve\ para\ que\ el\ numero\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ salga\ cuando\ la\ embestida\ llega\ al\ objetivo,\ no\ antes.\r\n
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=void\ redraw()
+numComments=4

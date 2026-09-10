@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=PawnPiece
+comment0.text=\r\n\ Peon\:\ el\ caso\ que\ demuestra\ que\ MOVER\ y\ ATACAR\ no\ son\ lo\ mismo.\r\n\ Avanza\ recto\ una\ casilla,\ pero\ captura\ en\ diagonal.\r\n
+comment1.params=isPlayer
+comment1.target=PawnPiece(boolean)
+comment2.params=
+comment2.target=int\ forward()
+comment2.text=El\ jugador\ avanza\ hacia\ arriba\ (-1);\ los\ enemigos\ hacia\ abajo\ (+1).
+comment3.params=targetX\ targetY
+comment3.target=boolean\ isValidMove(int,\ int)
+comment4.params=targetX\ targetY
+comment4.target=boolean\ isValidAttack(int,\ int)
+numComments=5

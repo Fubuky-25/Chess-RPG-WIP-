@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=TargetHalo
+comment0.text=\r\n\ Halo\ palpitante\ bajo\ la\ pieza\ que\ va\ a\ recibir\ el\ golpe.\r\n\r\n\ Adaptado\ de\ IndicadorObjetivo\ del\ proyecto\ JuegoTurnos.\ Responde\ "\u00BFa\ quien\r\n\ estoy\ golpeando?"\ mientras\ la\ barra\ de\ timing\ tapa\ parte\ del\ tablero\:\ sin\ el,\r\n\ el\ minijuego\ se\ juega\ sin\ saber\ sobre\ que\ pieza\ recaen\ las\ consecuencias.\r\n\r\n\ Se\ dibuja\ por\ debajo\ de\ Piece\ (ver\ setPaintOrder\ en\ ChessWorld)\ y\ ocupa\r\n\ exactamente\ una\ celda,\ para\ no\ interferir\ con\ ninguna\ consulta\ del\ tablero.\r\n
+comment1.params=playerTarget
+comment1.target=TargetHalo(boolean)
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=void\ redraw()
+numComments=4

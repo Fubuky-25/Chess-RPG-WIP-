@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=KnightPiece
+comment0.text=Caballo\:\ salto\ en\ L.\ Es\ la\ unica\ pieza\ que\ ignora\ el\ bloqueo\ de\ camino.
+comment1.params=isPlayer
+comment1.target=KnightPiece(boolean)
+comment2.params=targetX\ targetY
+comment2.target=boolean\ isValidMove(int,\ int)
+comment3.params=
+comment3.target=boolean\ jumpsOverPieces()
+numComments=4

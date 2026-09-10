@@ -1,0 +1,4 @@
+#BlueJ class context
+comment0.target=GameState
+comment0.text=\r\n\ Estados\ posibles\ del\ juego.\ Es\ la\ maquina\ de\ estados\ que\ coordina\ TODAS\ las\ fases\:\r\n\ ningun\ act()\ del\ juego\ hace\ nada\ si\ el\ estado\ actual\ no\ se\ lo\ permite.\r\n
+numComments=1

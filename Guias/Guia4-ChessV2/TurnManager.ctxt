@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=TurnManager
+comment0.text=\r\n\ Control\ de\ estados\ y\ alternancia\ de\ turnos.\r\n\ Turnos\ ALTERNADOS\:\ 1\ accion\ del\ jugador\ ->\ 1\ accion\ de\ la\ IA\ ->\ repetir.\r\n
+comment1.params=
+comment1.target=GameState\ getState()
+comment2.params=s
+comment2.target=void\ setState(GameState)
+comment3.params=world
+comment3.target=void\ endPlayerAction(ChessWorld)
+comment3.text=Llamado\ cuando\ el\ jugador\ termino\ su\ unica\ accion\ del\ turno.
+comment4.params=world
+comment4.target=void\ endEnemyAction(ChessWorld)
+comment4.text=Llamado\ cuando\ la\ IA\ termino\ su\ unica\ accion\ del\ turno.
+numComments=5

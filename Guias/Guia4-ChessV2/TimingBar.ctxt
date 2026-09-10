@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.target=TimingBar
+comment0.text=\r\n\ Minijuego\ de\ precision.\ Congela\ el\ resto\ del\ juego\ (el\ mundo\ pasa\ a\ MINIGAME\r\n\ y\ todos\ los\ act()\ se\ bloquean)\ mientras\ un\ cursor\ recorre\ la\ barra.\r\n\r\n\ MODO\ ATAQUE\ \ (ataca\ el\ jugador)\:\ zona\ roja\ \=\ critico,\ amarilla\ \=\ golpe,\ gris\ \=\ fallo.\r\n\ MODO\ DEFENSA\ (ataca\ la\ IA)\:\ \ \ \ \ \ zona\ verde\ \=\ parada\ (dano\ a\ la\ mitad).\r\n
+comment1.params=attacker\ defender\ mode\ targetX\ targetY\ level
+comment1.target=TimingBar(Piece,\ Piece,\ TimingBar.Mode,\ int,\ int,\ int)
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=void\ moveCursor()
+comment4.params=
+comment4.target=boolean\ inCrit()
+comment5.params=
+comment5.target=boolean\ inNormal()
+comment6.params=
+comment6.target=boolean\ inParry()
+comment7.params=
+comment7.target=void\ resolve()
+comment8.params=
+comment8.target=void\ finish()
+comment9.params=
+comment9.target=void\ drawBar()
+numComments=10

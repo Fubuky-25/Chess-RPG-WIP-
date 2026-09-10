@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.target=StartButton
+comment0.text=Boton\ de\ inicio\ de\ combate\ (se\ mantiene\ por\ compatibilidad\ con\ el\ proyecto\ original).
+comment1.params=
+comment1.target=StartButton()
+numComments=2

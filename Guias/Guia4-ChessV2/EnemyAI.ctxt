@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=EnemyAI
+comment0.text=\r\n\ IA\ enemiga.\ En\ su\ turno\ evalua\ el\ tablero\ y\ ejecuta\ UNA\ sola\ accion\:\r\n\ \ \ 1.\ Si\ alguna\ pieza\ puede\ atacar,\ ataca\ al\ mejor\ objetivo\ (prioriza\ al\ Rey\ y\ remates).\r\n\ \ \ 2.\ Si\ no,\ mueve\ la\ pieza\ que\ mas\ se\ acerque\ al\ jugador\ (distancia\ Chebyshev).\r\n
+comment1.params=
+comment1.target=void\ beginTurn()
+comment2.params=world
+comment2.target=void\ update(ChessWorld)
+comment3.params=world
+comment3.target=void\ playOneAction(ChessWorld)
+comment4.params=x\ y\ players
+comment4.target=int\ distanceToNearestPlayer(int,\ int,\ java.util.List)
+comment4.text=Distancia\ Chebyshev\:\ en\ un\ tablero\ de\ ajedrez\ la\ diagonal\ cuesta\ lo\ mismo\ que\ la\ recta.
+numComments=5

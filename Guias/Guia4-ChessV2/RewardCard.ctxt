@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=RewardCard
+comment0.text=Carta\ de\ recompensa\ entre\ niveles.\ Se\ elige\ con\ un\ clic.
+comment1.params=kind\ item\ piece\ title\ subtitle
+comment1.target=RewardCard(java.lang.String,\ Item,\ Piece,\ java.lang.String,\ java.lang.String)
+comment2.params=
+comment2.target=void\ redraw()
+comment3.params=img\ text\ x\ y\ maxWidth\ size\ color
+comment3.target=void\ drawWrapped(greenfoot.GreenfootImage,\ java.lang.String,\ int,\ int,\ int,\ int,\ greenfoot.Color)
+comment3.text=Parte\ el\ texto\ en\ lineas\ que\ caben\ en\ maxWidth\ (maximo\ 3\ lineas).
+comment4.params=
+comment4.target=void\ act()
+comment5.params=
+comment5.target=java.lang.String\ getKind()
+comment6.params=
+comment6.target=Item\ getItem()
+comment7.params=
+comment7.target=Piece\ getPiece()
+comment8.params=
+comment8.target=java.lang.String\ getTitle()
+numComments=9

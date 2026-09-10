@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=Inventory
+comment0.text=Mochila\ del\ jugador\:\ items\ conseguidos\ y\ todavia\ no\ equipados.
+comment1.params=item
+comment1.target=void\ add(Item)
+comment2.params=item
+comment2.target=void\ remove(Item)
+comment3.params=
+comment3.target=java.util.List\ getItems()
+comment4.params=
+comment4.target=int\ size()
+comment5.params=
+comment5.target=void\ clear()
+numComments=6

@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=KingPiece
+comment0.text=Rey\:\ una\ casilla\ en\ cualquier\ direccion.\ Si\ muere,\ GAME\ OVER.
+comment1.params=isPlayer
+comment1.target=KingPiece(boolean)
+comment2.params=targetX\ targetY
+comment2.target=boolean\ isValidMove(int,\ int)
+numComments=3
