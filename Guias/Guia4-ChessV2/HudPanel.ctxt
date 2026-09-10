@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=HudPanel
+comment0.text=\r\n\ Panel\ de\ informacion\ superior.\ Reemplaza\ los\ showText()\ sueltos\ y\ ajusta\r\n\ automaticamente\ el\ tamano\ del\ texto\ para\ que\ nunca\ se\ corte.\r\n
+comment1.params=
+comment1.target=HudPanel()
+comment2.params=info
+comment2.target=void\ setInfo(java.lang.String)
+comment3.params=message
+comment3.target=void\ setMessage(java.lang.String)
+comment4.params=
+comment4.target=void\ redraw()
+numComments=5

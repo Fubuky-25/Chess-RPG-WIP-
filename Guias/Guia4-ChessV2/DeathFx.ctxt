@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=DeathFx
+comment0.text=\r\n\ Restos\ de\ una\ pieza\ capturada\:\ se\ encoge\ y\ se\ desvanece.\r\n\r\n\ La\ pieza\ real\ sale\ del\ mundo\ en\ el\ mismo\ instante\ en\ que\ muere\ (la\ logica\ no\r\n\ puede\ esperar\ a\ una\ animacion),\ asi\ que\ lo\ que\ se\ ve\ aqui\ es\ solo\ una\ copia\r\n\ de\ su\ ultima\ imagen.\ Es\ puramente\ decorativo\:\ no\ ocupa\ casilla\ ni\ consume\r\n\ turno,\ y\ por\ eso\ la\ pieza\ atacante\ puede\ entrar\ en\ la\ casilla\ por\ encima.\r\n
+comment1.params=lastImage
+comment1.target=DeathFx(greenfoot.GreenfootImage)
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=void\ redraw()
+numComments=4

@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=PieceThemeManager
+comment0.text=\r\n\ Gestor\ de\ apariencia\:\ decide\ de\ que\ color\ juega\ el\ jugador\ en\ cada\ nivel\r\n\ y\ entrega\ el\ sprite\ correcto\ a\ cada\ pieza.\r\n
+comment1.params=
+comment1.target=void\ assignRandomColor()
+comment1.text=Se\ llama\ al\ inicio\ de\ cada\ nivel\:\ re-sortea\ el\ bando\ visual.
+comment2.params=pieceType\ isPlayer
+comment2.target=greenfoot.GreenfootImage\ getSprite(java.lang.String,\ boolean)
+comment2.text=Devuelve\ el\ sprite\ correspondiente\ (ej\:\ "white_king.png").
+comment3.params=piece\ pieceType\ isPlayer
+comment3.target=void\ applyImage(Piece,\ java.lang.String,\ boolean)
+comment3.text=Compatibilidad\:\ aplica\ el\ sprite\ directamente\ sobre\ la\ pieza.
+comment4.params=world
+comment4.target=void\ refreshAll(greenfoot.World)
+comment4.text=\r\n\ Re-tinta\ TODAS\ las\ piezas\ del\ mundo.\ Necesario\ porque\ el\ color\ se\r\n\ re-sortea\ cada\ nivel\ y\ las\ piezas\ supervivientes\ no\ se\ recrean.\r\n
+numComments=5

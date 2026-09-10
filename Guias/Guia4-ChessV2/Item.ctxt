@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.target=Item
+comment0.text=\r\n\ Clase\ base\ de\ todo\ el\ equipamiento.\r\n\ POLIMORFISMO\:\ cada\ subclase\ decide\ en\ applyTo()\ como\ altera\ los\ stats\ de\ la\ pieza.\r\n
+comment1.params=name\ description
+comment1.target=Item(java.lang.String,\ java.lang.String)
+comment2.params=
+comment2.target=java.lang.String\ getSlot()
+comment2.text=En\ que\ slot\ de\ la\ pieza\ se\ coloca.
+comment3.params=piece
+comment3.target=void\ applyTo(Piece)
+comment3.text=Modifica\ los\ stats\ de\ la\ pieza.\ Lo\ llama\ Piece.recalculateStats().
+comment4.params=
+comment4.target=greenfoot.GreenfootImage\ createIcon()
+comment4.text=Icono\ dibujado\ por\ codigo\ (no\ hay\ sprites\ de\ items\ en\ images/).
+comment5.params=
+comment5.target=java.lang.String\ getName()
+comment6.params=
+comment6.target=java.lang.String\ getDescription()
+comment7.params=fill\ letter
+comment7.target=greenfoot.GreenfootImage\ baseIcon(greenfoot.Color,\ java.lang.String)
+comment7.text=Marco\ comun\ para\ todos\ los\ iconos.
+numComments=8

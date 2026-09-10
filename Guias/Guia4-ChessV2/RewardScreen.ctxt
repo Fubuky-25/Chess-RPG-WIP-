@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=RewardScreen
+comment0.text=Pantalla\ de\ recompensas\:\ genera\ y\ limpia\ las\ 3\ cartas\ entre\ niveles.
+comment1.params=world\ level
+comment1.target=void\ show(ChessWorld,\ int)
+comment2.params=level
+comment2.target=RewardCard\ buildCard(int)
+comment3.params=world
+comment3.target=void\ clear(ChessWorld)
+numComments=4

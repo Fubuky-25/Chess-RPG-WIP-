@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=Armor
+comment0.text=Armadura\:\ aumenta\ la\ vida\ maxima\ de\ la\ pieza.
+comment1.params=name\ hpBonus
+comment1.target=Armor(java.lang.String,\ int)
+comment2.params=
+comment2.target=java.lang.String\ getSlot()
+comment3.params=piece
+comment3.target=void\ applyTo(Piece)
+comment4.params=
+comment4.target=greenfoot.GreenfootImage\ createIcon()
+comment5.params=
+comment5.target=int\ getHpBonus()
+numComments=6

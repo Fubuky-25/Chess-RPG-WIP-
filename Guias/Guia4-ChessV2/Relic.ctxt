@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=Relic
+comment0.text=\r\n\ Reliquia\:\ efectos\ especiales\ que\ no\ son\ solo\ +ataque\ o\ +vida.\r\n\ Aqui\ vive\ el\ item\ que\ desbloquea\ el\ movimiento\ de\ ajedrez\ completo.\r\n
+comment1.params=name\ effect\ description
+comment1.target=Relic(java.lang.String,\ java.lang.String,\ java.lang.String)
+comment2.params=
+comment2.target=java.lang.String\ getSlot()
+comment3.params=piece
+comment3.target=void\ applyTo(Piece)
+comment4.params=
+comment4.target=greenfoot.GreenfootImage\ createIcon()
+comment5.params=
+comment5.target=java.lang.String\ getEffect()
+numComments=6

@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=TextUtil
+comment0.text=\r\n\ Utilidad\ de\ texto.\ Greenfoot\ no\ permite\ medir\ cadenas\ con\ drawString,\ pero\ el\r\n\ constructor\ GreenfootImage(texto,\ tamano,\ color,\ fondo)\ SI\ devuelve\ una\ imagen\r\n\ del\ ancho\ real\ del\ texto.\ Lo\ usamos\ para\ que\ ningun\ texto\ se\ salga\ del\ panel.\r\n
+comment1.params=canvas\ text\ x\ y\ maxWidth\ maxSize\ minSize\ color
+comment1.target=void\ drawFitted(greenfoot.GreenfootImage,\ java.lang.String,\ int,\ int,\ int,\ int,\ int,\ greenfoot.Color)
+comment1.text=\r\n\ Dibuja\ el\ texto\ encajandolo\ en\ maxWidth\:\ baja\ el\ tamano\ de\ fuente\ y,\ si\ aun\r\n\ asi\ no\ cabe,\ lo\ recorta\ con\ puntos\ suspensivos.\r\n\ (x,\ y)\ es\ la\ esquina\ SUPERIOR\ IZQUIERDA\ del\ texto.\r\n
+comment2.params=text\ size
+comment2.target=int\ widthOf(java.lang.String,\ int)
+comment2.text=Ancho\ en\ pixeles\ que\ ocuparia\ el\ texto\ a\ ese\ tamano.
+numComments=3

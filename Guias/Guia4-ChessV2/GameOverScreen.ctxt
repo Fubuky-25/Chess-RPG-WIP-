@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.target=GameOverScreen
+comment0.text=Pantalla\ final.\ Con\ el\ estado\ en\ GAME_OVER\ todo\ lo\ demas\ queda\ congelado.
+comment1.params=level\ piecesLost
+comment1.target=GameOverScreen(int,\ int)
+numComments=2

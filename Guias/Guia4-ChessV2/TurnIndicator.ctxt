@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=TurnIndicator
+comment0.text=\r\n\ Cartel\ que\ late\ con\ la\ fase\ actual\:\ DESPLIEGUE,\ TU\ TURNO,\ COMBATE,\ TURNO\ IA...\r\n\r\n\ Adaptado\ de\ IndicadorTurno\ del\ proyecto\ JuegoTurnos.\ El\ pulso\ no\ es\ adorno\:\r\n\ responde\ "\u00BFme\ toca\ a\ mi?"\ antes\ de\ que\ el\ jugador\ tenga\ que\ deducirlo\r\n\ probando\ clics.\ Cuando\ NO\ es\ su\ turno\ el\ cartel\ se\ queda\ fijo\ y\ apagado,\ que\r\n\ es\ la\ misma\ senal\ al\ reves.\r\n\r\n\ La\ imagen\ base\ se\ construye\ solo\ cuando\ cambia\ el\ texto;\ el\ pulso\ se\ limita\ a\r\n\ cambiar\ la\ transparencia\ de\ una\ copia,\ y\ solo\ en\ el\ ciclo\ en\ que\ cruza\ el\r\n\ umbral.\ Asi\ el\ latido\ no\ cuesta\ un\ redibujado\ por\ ciclo.\r\n
+comment1.params=
+comment1.target=TurnIndicator()
+comment2.params=
+comment2.target=void\ act()
+comment3.params=text\ color\ pulsing
+comment3.target=void\ show(java.lang.String,\ greenfoot.Color,\ boolean)
+comment3.text=\r\n\ @param\ pulsing\ true\ solo\ cuando\ el\ juego\ espera\ una\ accion\ del\ jugador.\r\n
+comment4.params=
+comment4.target=void\ rebuild()
+comment5.params=
+comment5.target=void\ applyPulse()
+numComments=6

@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=QueenPiece
+comment0.text=Dama\:\ rectas\ y\ diagonales,\ limitada\ por\ su\ alcance.
+comment1.params=isPlayer
+comment1.target=QueenPiece(boolean)
+comment2.params=targetX\ targetY
+comment2.target=boolean\ isValidMove(int,\ int)
+numComments=3
