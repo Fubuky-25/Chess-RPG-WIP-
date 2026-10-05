@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=Pacman
+comment1.params=
+comment1.target=Pacman()
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=void\ leerTeclado()
+comment4.params=
+comment4.target=void\ intentarMover()
+comment5.params=
+comment5.target=void\ animar()
+comment6.params=dx\ dy
+comment6.target=boolean\ puedeMoverse(int,\ int)
+comment7.params=
+comment7.target=void\ comerObjetos()
+comment8.params=
+comment8.target=void\ comprobarTunel()
+numComments=9

@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=PacmanWorld
+comment1.params=
+comment1.target=PacmanWorld()
+comment2.params=
+comment2.target=Pacman\ getPacman()
+comment3.params=
+comment3.target=Fantasma\ getBlinky()
+comment4.params=
+comment4.target=void\ asustarFantasmas()
+comment5.params=valor
+comment5.target=void\ addPunto(int)
+comment6.params=
+comment6.target=void\ cargarNivel()
+comment7.params=arreglo
+comment7.target=void\ cargarObjetos(int[])
+numComments=8
