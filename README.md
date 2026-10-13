@@ -34,7 +34,7 @@ git clone -b carrera-unity https://github.com/Fubuky-25/Chess-RPG-WIP-.git Proto
    3. En Unity: **Window → Package Manager → Packages: My Assets**, buscar *Cartoon Race Track - Oval*, **Download** (~480 MB) e **Import**.
    4. En la ventana de importación dejar **todo marcado** y pulsar **Import**. Debe quedar la carpeta `Assets/CartoonTracksPack1/`. Esperar a que termine de compilar.
 
-**4. Generar la escena y jugar:** menú **Carrera → Crear escena de carrera (sentido A)** y pulsar **Play**. Si los autos salen en dirección contraria a la pista, usar el sentido B. Si el menú **Carrera** no aparece, revisar la consola de Unity: seguramente falta importar la pista (paso 3).
+**4. Generar la escena y jugar:** menú **Carrera → Crear escena de carrera (sentido A)** y pulsar **Play**. Si los autos salen en dirección contraria a la pista, usar el sentido B. Si la consola muestra *"No encontré asfalto"*, falta importar la pista (paso 3).
 
 ### ¿Por qué la pista no está en el repositorio?
 
