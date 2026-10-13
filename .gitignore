@@ -1,0 +1,29 @@
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+/[Mm]emoryCaptures/
+*.csproj
+*.sln
+*.suo
+*.user
+.vs/
+.idea/
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+sysinfo.txt
+*.apk
+*.unitypackage
+
+# Asset de terceros (no se sube: ver README, cada integrante lo importa)
+/Assets/CartoonTracksPack1/
+/Assets/CartoonTracksPack1.meta
+
+# Reportes generados por el menu Carrera
+/race_report.txt
+/race_map.png
+/race_map_legend.txt
