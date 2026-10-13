@@ -16,12 +16,31 @@ Prototipo de un **juego de carreras estilo Mario Kart**: varias vueltas en una p
 - Obstáculos en el terreno y objetos tipo Mario Kart.
 - Más pistas, menú, ajuste de dificultad de la IA, mejor sensación de manejo.
 
-## Cómo abrirlo
+## Instalación (paso a paso)
 
-1. Unity **2021.1.2f1** (con Unity Hub).
-2. Importar la pista (no está en el repo por peso y licencia): el pack **Cartoon Tracks Pack 1** debe quedar en `Assets/CartoonTracksPack1/`. Se consigue desde *Package Manager → My Assets* con la cuenta que lo tenga.
-3. Abrir la carpeta del repo como proyecto en Unity y esperar a que compile.
-4. Menú **Carrera → Crear escena de carrera (sentido A)** para generar `Assets/_Game/Scenes/Race.unity` y dar Play. (Si los autos salen al revés, usar el sentido B.)
+El proyecto **no incluye la pista**: hay que descargarla una vez desde la Asset Store (es gratis) y quedará en la carpeta correcta de forma automática.
+
+**1. Requisitos:** Unity Hub y Unity **2021.1.2f1** (otra versión puede dar errores o pedir actualizar el proyecto).
+
+**2. Clonar la rama del juego:**
+
+```bash
+git clone -b carrera-unity https://github.com/Fubuky-25/Chess-RPG-WIP-.git Proto3D
+```
+
+**3. Descargar la pista:** [Cartoon Race Track - Oval (RCC Design, gratis)](https://marketplace.unity.com/packages/3d/environments/roadways/cartoon-race-track-oval-175061)
+   1. Entrar con tu cuenta de Unity y pulsar **Add to My Assets** (se agrega a tu cuenta).
+   2. Abrir el proyecto `Proto3D` en Unity Hub (la primera vez tarda varios minutos en importar).
+   3. En Unity: **Window → Package Manager → Packages: My Assets**, buscar *Cartoon Race Track - Oval*, **Download** (~480 MB) e **Import**.
+   4. En la ventana de importación dejar **todo marcado** y pulsar **Import**. Debe quedar la carpeta `Assets/CartoonTracksPack1/`. Esperar a que termine de compilar.
+
+**4. Generar la escena y jugar:** menú **Carrera → Crear escena de carrera (sentido A)** y pulsar **Play**. Si los autos salen en dirección contraria a la pista, usar el sentido B. Si el menú **Carrera** no aparece, revisar la consola de Unity: seguramente falta importar la pista (paso 3).
+
+### ¿Por qué la pista no está en el repositorio?
+
+- **Peso:** las texturas de la pista (`road.psd` ~576 MB, `road_normal.png` ~175 MB) superan el límite de **100 MB por archivo** de GitHub; el repo no las acepta. Con Git LFS el cupo gratuito (1 GB) se agotaría con pocos clones del equipo.
+- **Es un asset de terceros:** el repo es público y no corresponde redistribuir el trabajo de otra persona. Cada integrante lo descarga de la fuente oficial.
+- **Funciona igual:** el pack de la Asset Store trae los mismos identificadores internos (`.meta`), así que la escena y los prefabs lo reconocen sin configurar nada.
 
 ## Estructura
 
