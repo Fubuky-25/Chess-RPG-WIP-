@@ -56,6 +56,16 @@ public class RaceManager : MonoBehaviour
         if (user != null) user.enabled = on;
     }
 
+    void ReleaseBrakes(RaceProgress r)
+    {
+        WheelCollider[] wheels = r.GetComponentsInChildren<WheelCollider>();
+
+        foreach (WheelCollider wheel in wheels)
+        {
+            wheel.brakeTorque = 0f;
+        }
+    }
+    
     void Update()
     {
         if (State == RaceState.Countdown)
@@ -67,6 +77,7 @@ public class RaceManager : MonoBehaviour
                 raceStart = Time.time;
                 foreach (RaceProgress r in Racers)
                 {
+                    ReleaseBrakes(r);
                     SetDriving(r, true);
                     r.BeginRace(raceStart);
                 }
