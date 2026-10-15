@@ -9,6 +9,8 @@ Prototipo de un **juego de carreras estilo Mario Kart**: varias vueltas en una p
 - Auto manejable por el jugador (flechas / WASD).
 - Rivales con **IA propia** que siguen la línea de la pista, frenan en curvas y esquivan autos.
 - Carrera de **3 vueltas**: cuenta regresiva, posiciones en vivo, tiempos por vuelta y pantalla de meta.
+- **Selector de color** del auto antes de cada carrera (clic o flechas, o un código hex; se recuerda el último color).
+- **Rubberbanding suave**: si vas muy adelante los rivales aceleran un poco, y si vas muy atrás frenan un poco; el efecto es gradual y está limitado (ver `AIDriver`, sección *Rubberbanding*).
 - Reaparecer en la pista con **R** (o automático si el auto vuelca o se atasca). **Enter** reinicia al terminar.
 
 ## Pendiente (la idea del juego)
@@ -44,7 +46,7 @@ git clone -b carrera-unity https://github.com/Fubuky-25/Chess-RPG-WIP-.git Proto
 
 ## Estructura
 
-- `Assets/_Game/Scripts/` — lógica de la carrera: `RaceManager`, `RaceProgress`, `TrackPath`, `AIDriver`, `CarRecovery`, `CameraFollow`, `RaceHUD`, `CarPaint`.
+- `Assets/_Game/Scripts/` — lógica de la carrera: `RaceManager`, `RaceProgress`, `TrackPath`, `AIDriver`, `CarRecovery`, `CameraFollow`, `RaceHUD`, `CarPaint`, `CarColorSelector`.
 - `Assets/_Game/Editor/RaceSetup.cs` — genera la escena, la línea de carrera y la parrilla.
 - `Assets/Standard Assets/` — solo lo necesario del auto (`CarController`) de Unity Standard Assets.
 

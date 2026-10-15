@@ -264,6 +264,7 @@ public static class RaceSetup
         rm.laps = Laps;
         rm.startDistance = startDist;
         race.AddComponent<RaceHUD>();
+        race.AddComponent<CarColorSelector>();   // selector de color previo a la carrera
 
         Camera cam = Camera.main != null ? Camera.main : Object.FindObjectOfType<Camera>();
         if (cam != null && playerT != null)
