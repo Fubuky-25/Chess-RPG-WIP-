@@ -1,7 +1,7 @@
 # Proto3D — Juego de carreras (Unity)
 
 Prototipo de un **juego de carreras estilo Mario Kart**: varias vueltas en una pista, **obstáculos en el terreno** y **rivales controlados por IA**.
-
+Videos : https://drive.google.com/drive/folders/1JXYvYwunD5Rxlb1qeNtJcvs1VJNn_sWP?usp=sharing 
 > Este proyecto vive en la rama `carrera-unity`, separado del Chess RPG de `main`.
 
 ## Qué hay hoy
@@ -55,3 +55,5 @@ git clone -b carrera-unity https://github.com/Fubuky-25/Chess-RPG-WIP-.git Proto
 - No commitear `Library/`, `Obj/` ni `UserSettings/` (ya están en `.gitignore`).
 - Los archivos `.meta` **sí** se suben.
 - Avisen antes de editar `Race.unity` a mano: se puede regenerar desde el menú y se pierden los cambios manuales.
+
+
