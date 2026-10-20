@@ -16,6 +16,20 @@ public class AIDriver : MonoBehaviour
     [Tooltip("Posicion lateral preferida respecto al centro de la pista (m, + derecha).")]
     public float preferredOffset = 0f;
 
+    [Header("Rubberbanding (ajuste dinamico de dificultad)")]
+    [Tooltip("Si esta activo, el rival acelera cuando el jugador va muy adelante y frena cuando el jugador va muy atras.")]
+    public bool rubberBanding = true;
+    [Tooltip("Diferencia de distancia (m) bajo la cual no se hace nada: carrera 'normal'.")]
+    public float rubberDeadZone = 25f;
+    [Tooltip("Diferencia de distancia (m) a partir de la cual se aplica el efecto maximo.")]
+    public float rubberFullGap = 140f;
+    [Tooltip("Aumento maximo de velocidad cuando el jugador va adelante (0.10 = +10%).")]
+    [Range(0f, 0.3f)] public float rubberMaxBoost = 0.10f;
+    [Tooltip("Reduccion maxima de velocidad cuando el jugador va atras (0.12 = -12%).")]
+    [Range(0f, 0.3f)] public float rubberMaxSlow = 0.12f;
+    [Tooltip("Que tan rapido puede cambiar el multiplicador (0.03 = 3% por segundo). Mas bajo = menos evidente.")]
+    public float rubberChangeRate = 0.03f;
+
     [Header("Conduccion")]
     public float maxSteerAngle = 25f;
     public float lookAheadMin = 7f;
@@ -30,6 +44,10 @@ public class AIDriver : MonoBehaviour
 
     float offset;          // desvio lateral actual de la linea objetivo
     float stuckTimer;
+    float speedMultiplier = 1f;   // factor de rubberbanding actual (1 = sin efecto)
+
+    // Para depurar: factor de velocidad que el rubberbanding aplica ahora mismo.
+    public float SpeedMultiplier { get { return speedMultiplier; } }
 
     void Awake()
     {
@@ -65,7 +83,12 @@ public class AIDriver : MonoBehaviour
         float steer = Mathf.Clamp(angle / maxSteerAngle, -1f, 1f);
 
         // 3) Velocidad objetivo segun las curvas que vienen.
-        float targetSpeed = Mathf.Min(maxSpeed, Mathf.Min(avoidSpeedCap, CornerSpeedLimit(path, d)));
+        //    El rubberbanding escala el techo de velocidad; en curva los aumentos cuentan solo a medias
+        //    para no pasarse del agarre, las reducciones si cuentan completas.
+        UpdateRubberBand(dt);
+        float cornerMult = speedMultiplier > 1f ? 1f + (speedMultiplier - 1f) * 0.5f : speedMultiplier;
+        float targetSpeed = Mathf.Min(maxSpeed * speedMultiplier,
+                            Mathf.Min(avoidSpeedCap, CornerSpeedLimit(path, d) * cornerMult));
 
         float err = targetSpeed - speed;
         float accel = Mathf.Clamp01(err * 0.5f);
@@ -81,6 +104,26 @@ public class AIDriver : MonoBehaviour
         }
 
         car.Move(steer, accel, -brake, 0f);
+    }
+
+    // Rubberbanding: compara la distancia recorrida por el jugador con la de este rival y calcula un
+    // multiplicador de velocidad. El multiplicador deseado crece de forma suave con la diferencia
+    // (zona muerta + smoothstep) y el multiplicador real solo puede cambiar a rubberChangeRate por
+    // segundo, asi el cambio de ritmo es gradual y dificil de notar.
+    void UpdateRubberBand(float dt)
+    {
+        float wanted = 1f;
+        RaceManager rm = RaceManager.Instance;
+        if (rubberBanding && rm != null && rm.Player != null && rm.State == RaceManager.RaceState.Racing
+            && !rm.Player.Finished && !progress.Finished && rubberFullGap > rubberDeadZone)
+        {
+            // Positivo: el jugador va por delante de este rival. Negativo: va por detras.
+            float gap = rm.Player.TotalDistance - progress.TotalDistance;
+            float t = Mathf.Clamp01((Mathf.Abs(gap) - rubberDeadZone) / (rubberFullGap - rubberDeadZone));
+            t = t * t * (3f - 2f * t); // smoothstep
+            wanted = gap > 0f ? 1f + rubberMaxBoost * t : 1f - rubberMaxSlow * t;
+        }
+        speedMultiplier = Mathf.MoveTowards(speedMultiplier, wanted, rubberChangeRate * dt);
     }
 
     // Revisa curvas hasta ~90 m adelante y devuelve la velocidad a la que hay que ir ahora

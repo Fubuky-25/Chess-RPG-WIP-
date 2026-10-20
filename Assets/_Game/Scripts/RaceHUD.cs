@@ -36,6 +36,7 @@ public class RaceHUD : MonoBehaviour
     {
         RaceManager rm = RaceManager.Instance;
         if (rm == null || rm.Player == null) return;
+        if (rm.State == RaceManager.RaceState.ColorSelect) return; // el selector dibuja su propio panel
         MakeStyles();
 
         float w = Screen.width, h = Screen.height;

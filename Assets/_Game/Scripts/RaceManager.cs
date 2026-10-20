@@ -6,7 +6,7 @@ using UnityStandardAssets.Vehicles.Car;
 // Controla la carrera: cuenta regresiva, vueltas, posiciones y resultados.
 public class RaceManager : MonoBehaviour
 {
-    public enum RaceState { Countdown, Racing, Finished }
+    public enum RaceState { ColorSelect, Countdown, Racing, Finished }
 
     public static RaceManager Instance { get; private set; }
 
@@ -15,6 +15,8 @@ public class RaceManager : MonoBehaviour
     public float countdownSeconds = 3f;
     [Tooltip("Distancia sobre la pista (m) donde esta la linea de salida/meta.")]
     public float startDistance = 0f;
+    [Tooltip("Mostrar el selector de color del auto antes de la cuenta regresiva.")]
+    public bool showColorSelector = true;
 
     public List<RaceProgress> Racers { get; private set; }
     public RaceProgress Player { get; private set; }
@@ -44,6 +46,24 @@ public class RaceManager : MonoBehaviour
             SetDriving(r, false);
         }
         Standings.AddRange(Racers);
+
+        // Primero se elige el color; la cuenta regresiva empieza al confirmar (StartCountdown).
+        CarColorSelector selector = GetComponent<CarColorSelector>();
+        if (showColorSelector && selector == null) selector = gameObject.AddComponent<CarColorSelector>();
+        if (showColorSelector && selector != null && Player != null)
+        {
+            State = RaceState.ColorSelect;
+            selector.Begin(Player, Racers);
+        }
+        else
+        {
+            StartCountdown();
+        }
+    }
+
+    // Pasa del selector de color a la cuenta regresiva.
+    public void StartCountdown()
+    {
         State = RaceState.Countdown;
         CountdownLeft = countdownSeconds + 1f; // +1: se muestra "GO" un segundo
     }
@@ -83,7 +103,7 @@ public class RaceManager : MonoBehaviour
                 }
             }
         }
-        else
+        else if (State != RaceState.ColorSelect)
         {
             RaceTime = Time.time - raceStart;
         }
@@ -108,7 +128,7 @@ public class RaceManager : MonoBehaviour
         foreach (RaceProgress r in Racers)
         {
             if (r.car == null) continue;
-            bool hold = State == RaceState.Countdown;
+            bool hold = State == RaceState.ColorSelect || State == RaceState.Countdown;
             bool playerDone = State == RaceState.Finished && r == Player;
             if (hold) r.car.Move(0f, 0f, 0f, 1f);
             else if (playerDone) r.car.Move(0f, 0f, -0.6f, 0f);
